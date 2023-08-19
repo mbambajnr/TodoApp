@@ -1,5 +1,6 @@
 import React, {Component, createContext} from 'react';
 
+
 export const TodoContext = createContext();
 
 class TodoContextProvider extends Component {
@@ -7,13 +8,28 @@ class TodoContextProvider extends Component {
         super(props);
         this.state = {
 
-            todos:[{name:'do something'}]
+            todos:[{name:'do something'},
+                   {name:'do something'},
+                   {name:'do something'},
+                   {name:'do something'},
+                   {name:'do something'}
+
+
+            ]
+
 
         };
     }
 
     //create
-    createTodo(){
+    createTodo(event,todo){
+        console.log(event)
+        let data = [...this.state.todos];
+        data.push(todo);
+        this.setState({
+            'todos' : data,
+        })
+
 
     }
 
