@@ -9,7 +9,7 @@ function TodoTable() {
     const context = useContext(TodoContext)
     const [addTodo,setAddTodo] = useState('')
     return (
-        <form onSubmit={(event)=>context.createTodo({event,name: addTodo})}>
+        <form onSubmit={(event)=>context.createTodo(event,{name: addTodo})}>
         <Table>
             <TableHead>
                 <TableRow>
@@ -20,14 +20,14 @@ function TodoTable() {
             <TableBody>
                 <TableRow>
                     <TableCell>
-                        <TextField value={addTodo} onChange={(event)=>setAddTodo(event.target.value)} label='New task' fullWidth={true}></TextField>
+                        <TextField value={addTodo} onChange={(event)=>{setAddTodo(event.target.value)}} label='New task' fullWidth={true}></TextField>
                     </TableCell>
                     <TableCell align='right'>
                         <IconButton type='submit'><AddIcon/></IconButton>
                     </TableCell>
                 </TableRow>
-                {context.todos.map((todo,index) =>(
-                    <TableRow  key={'todo' + index}>
+                {context.todos.slice().reverse().map((todo,index) =>(
+                    <TableRow  key={'todo ' + index}>
                         <TableCell>{todo.name}</TableCell>
                         <TableCell align='right'>
                             <IconButton>
