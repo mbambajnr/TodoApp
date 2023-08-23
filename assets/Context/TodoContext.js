@@ -8,11 +8,11 @@ class TodoContextProvider extends Component {
         super(props);
         this.state = {
 
-            todos:[{name:'do something'},
-                   {name:'do something'},
-                   {name:'do something'},
-                   {name:'do something'},
-                   {name:'do something'}
+            todos:[{id:0,name:'do something'},
+                   {id:1,name:'do something'},
+                   {id:2,name:'do something'},
+                   {id:3,name:'do something'},
+                   {id:4,name:'do something'}
 
 
             ]
@@ -39,12 +39,29 @@ class TodoContextProvider extends Component {
     }
 
     //update
-    updateTodo(){
-
+    updateTodo(data){
+     let todos = [...this.state.todos];
+      let todo = todos.find(todo=> {
+          return todo.id === data.id;
+      });
+      todo.name = data.name;
+      this.setState({
+          todos: todos,
+      })
     }
 
     //delete
-    deleteTodo(){
+    deleteTodo(data){
+        let todos = [...this.state.todos];
+        let todo = todos.find(todo =>{
+            return todo.id === data.id
+        })
+
+        todos.splice(todos.indexOf(todo),1)
+
+        this.setState({
+            todos: todos
+        })
 
     }
 
